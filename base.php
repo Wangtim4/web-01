@@ -245,11 +245,11 @@ $News=new DB('news');
 $Admin=new DB('admin');
 $Menu=new DB('menu');
 
-$Str = new Str($do);
+// $Str = new Str($do);
 
-// if(isset($do)){
-//     $Str=new Str($do);
-// }
+if(isset($do)){
+    $Str=new Str($do);
+}
 
 
 // if(empty($_SESSION['view'])){
