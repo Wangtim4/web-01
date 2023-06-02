@@ -1,4 +1,7 @@
-<?php include "base.php";?>
+<?php 
+$do = $_GET['do']??'main';
+include "base.php";
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -36,7 +39,7 @@
 				</div>
 			</div>
 			<?php
-				$do = $_GET['do']??'main';
+				
 				$file = "./front/".$do.".php";
 				if(file_exists($file)){
 					include $file;

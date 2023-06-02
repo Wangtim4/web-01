@@ -1,13 +1,12 @@
-<h3>新增動態文字圖片</h3>
+<?php 
+$do = $_GET['do'] ?? 'title';
+include_once "../base.php" ?>
+<h3><?=$Str->addModalHeader;?></h3>
 <hr>
-<form action="" method="post" enctype="multipart/form-data">
+<form action="./api/add_ad.php" method="post" >
     <table>
         <tr>
-            <td>動態文字區圖片:</td>
-            <td><input type="file" name="img"></td>
-        </tr>
-        <tr>
-            <td>動態文字區替代文字:</td>
+            <td><?=$Str->addModalcol[0];?>:</td>
             <td><input type="text" name="text"></td>
         </tr>
     </table>
