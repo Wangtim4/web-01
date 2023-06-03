@@ -9,12 +9,19 @@
                     <td width="7%">刪除</td>
                 </tr>
                 <?php
-                $rows = $DB->all();
+
+                $all = $DB->math('count', 'id');
+                $div = 3;
+                $pages = ceil($all / $div);
+                $now = $_GET['p'] ?? '1';
+                $start = ($now - 1) * $div;
+
+                $rows = $DB->all(" limit $start, $div ");
                 foreach ($rows as $row) {
                 ?>
                     <td >
                         <textarea name="text[]" 
-                        style="width: 95%; height:100px;"><?= $row['text']; ?></textarea>
+                        style="width: 95%; height:70px;"><?= $row['text']; ?></textarea>
                         
                     </td>
                     <td >
@@ -31,6 +38,26 @@
                 ?>
             </tbody>
         </table>
+        <div class="cent">
+            
+                    <?php
+                    if(($now-1) > 0){
+                        $p = $now-1;
+                        echo "<a href='?do={$Str->table}&p=$p'> < </a>";
+                    }
+                    for ($i = 1; $i <= $pages; $i++) {
+                        $fontsize=($now==$i)?'1.5rem':'';
+                        echo "<a href='?do={$Str->table}&p=$i' 
+                        style='font-size:$fontsize'>";
+                        echo $i;
+                        echo "</a>";
+                    }
+                    if(($now+1) <= $pages){
+                        $p = $now+1;
+                        echo "<a href='?do={$Str->table}&p=$p'> > </a>";
+                    }
+                    ?>
+        </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>
@@ -41,4 +68,5 @@
         </table>
                 <input type="hidden" name="table" value="<?=$do;?>">
     </form>
+    
 </div>

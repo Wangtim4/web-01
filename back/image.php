@@ -41,16 +41,24 @@
             </tbody>
         </table>
         <div class="cent">
-            <a href="">
-                < </a>
+            
                     <?php
+                    if(($now-1) > 0){
+                        $p = $now-1;
+                        echo "<a href='?do={$Str->table}&p=$p'> < </a>";
+                    }
                     for ($i = 1; $i <= $pages; $i++) {
-                        echo "<a href='?do=image&p=$i'>";
+                        $fontsize=($now==$i)?'1.5rem':'';
+                        echo "<a href='?do={$Str->table}&p=$i' 
+                        style='font-size:$fontsize'>";
                         echo $i;
                         echo "</a>";
                     }
+                    if(($now+1) <= $pages){
+                        $p = $now+1;
+                        echo "<a href='?do={$Str->table}&p=$p'> > </a>";
+                    }
                     ?>
-                    <a href=""> > </a>
         </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
