@@ -4,27 +4,24 @@
         <table width="100%" style="text-align:center;">
             <tbody>
                 <tr class="yel">
-                    <td width="60%"><?=$Str->tdHead[0];?></td>
-                    <td width="10%">顯示</td>
-                    <td width="10%">刪除</td>
-                    <td></td>
+                    <td width="80%"><?=$Str->tdHead[0];?></td>
+                    <td width="7%">顯示</td>
+                    <td width="7%">刪除</td>
                 </tr>
                 <?php
                 $rows = $DB->all();
                 foreach ($rows as $row) {
                 ?>
                     <td >
-                        <img src="./img/<?= $row['img']; ?>" style="width:20%;">
+                        <textarea name="text[]" 
+                        style="width: 95%; height:100px;"><?= $row['text']; ?></textarea>
+                        
                     </td>
                     <td >
                         <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>"<?=($row['sh']==1)?'checked':'';?>>
                     </td>
                     <td >
                         <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
-                    </td>
-                    <td>
-                        <input type="button" value="<?=$Str->updateImg;?>"
-                        onclick="op('#cover','#cvr','./modal/update_<?=$Str->table;?>.php?id=<?= $row['id']; ?>')">
                     </td>
                     
                     <input type="hidden" name='id[]' value="<?= $row['id']; ?>">

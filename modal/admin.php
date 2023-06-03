@@ -1,17 +1,21 @@
 <?php 
 $do = $_GET['do'] ?? 'title';
 include_once "../base.php" ?>
-<h3><?=$Str->addModalHeader;?></h3>
+<h3 style="text-align: center;"><?=$Str->addModalHeader;?></h3>
 <hr>
 <form action="./api/add.php" method="post" enctype="multipart/form-data">
-    <table>
+    <table >
         <tr>
             <td><?=$Str->addModalcol[0];?>:</td>
-            <td><input type="file" name="img"></td>
+            <td><input type="text" name="acc"></td>
         </tr>
         <tr>
             <td><?=$Str->addModalcol[1];?>:</td>
-            <td><input type="text" name="text"></td>
+            <td><input type="password" name="pw"></td>
+        </tr>
+        <tr>
+            <td><?=$Str->addModalcol[2];?>:</td>
+            <td><input type="password" name="pw2"></td>
         </tr>
     </table>
     <div>

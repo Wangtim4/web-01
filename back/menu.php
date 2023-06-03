@@ -4,7 +4,9 @@
         <table width="100%" style="text-align:center;">
             <tbody>
                 <tr class="yel">
-                    <td width="60%"><?=$Str->tdHead[0];?></td>
+                    <td width="30%"><?=$Str->tdHead[0];?></td>
+                    <td width="30%"><?=$Str->tdHead[1];?></td>
+                    <td width="10%"><?=$Str->tdHead[2];?></td>
                     <td width="10%">顯示</td>
                     <td width="10%">刪除</td>
                     <td></td>
@@ -13,9 +15,16 @@
                 $rows = $DB->all();
                 foreach ($rows as $row) {
                 ?>
+                    
                     <td >
-                        <img src="./img/<?= $row['img']; ?>" style="width:20%;">
+                        <input type="text" 
+                        style="width: 95%;" name='text[]' value="<?= $row['text']; ?>">
                     </td>
+                    <td >
+                        <input type="text" 
+                        style="width: 95%;" name='href[]' value="<?= $row['href']; ?>">
+                    </td>
+                    <td>0</td>
                     <td >
                         <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>"<?=($row['sh']==1)?'checked':'';?>>
                     </td>
@@ -24,7 +33,7 @@
                     </td>
                     <td>
                         <input type="button" value="<?=$Str->updateImg;?>"
-                        onclick="op('#cover','#cvr','./modal/update_<?=$Str->table;?>.php?id=<?= $row['id']; ?>')">
+                        onclick="op('#cover','#cvr','./modal/edit_sub.php?id=<?= $row['id']; ?>')">
                     </td>
                     
                     <input type="hidden" name='id[]' value="<?= $row['id']; ?>">
