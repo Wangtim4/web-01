@@ -252,12 +252,12 @@ if(isset($do)){
 }
 
 
-// if(empty($_SESSION['view'])){
-// $view=$Total->find(1);
-// $view['total']++;
-// $Total->save($view);
-//     $_SESSION['view']=1;
-// }
+if(empty($_SESSION['view'])){
+$view=$Total->find(1);
+$view['total']++;
+$Total->save($view);
+    $_SESSION['view']=1;
+}
 
 
 ?>
