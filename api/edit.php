@@ -17,7 +17,6 @@ if(!empty($_POST['id'])){
                     break;
                 case 'admin':
                     $row['acc']=$_POST['acc'][$idx];
-                    break;
                     $row['pw']=$_POST['pw'][$idx];
                     break;
                 case 'menu':
@@ -35,8 +34,7 @@ if(!empty($_POST['id'])){
             $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
                     break;
             }
-
-            
+ 
             $DB->save($row);
         }
     }
