@@ -159,3 +159,9 @@ input:focus,button:focus
 	cursor:pointer;
 	text-decoration:none;
 }
+.im img{
+	height: 103px;
+	width: 150px;
+	border: 3px solid orange;
+	margin: 5px;
+}

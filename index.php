@@ -3,7 +3,7 @@ $do = $_GET['do']??'main';
 include "base.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
+<!-- saved from url0=(0040)http://127.0.0.1/test/exercise/collage/? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -66,16 +66,38 @@ include "base.php";
 				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=admin')">管理登入</button>
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
+					<div class="cent" onclick="pp(1)">
+						<img src="./icon/up.jpg" alt="">
+					</div>
+
+					<?php
+						$imgs=$Image->all(['sh'=>1]);
+						foreach($imgs as $idx => $img){
+							?>
+							<div class="cent im" id="ssaa<?=$idx;?>">
+								<img width="150px" height="103px" src="./img/<?=$img['img'];?>" alt="">
+							</div>
+							<?php
+						}
+					?>
+					<!-- <div class="cent im" id="ssaa0">A</div>
+					<div class="cent im" id="ssaa1">b</div>
+					<div class="cent im" id="ssaa2">c</div>
+					<div class="cent im" id="ssaa3">d</div> -->
+
+					<div class="cent " onclick="pp(2)">
+						<img src="./icon/dn.jpg" alt="">
+					</div>
 					<script>
 						var nowpage = 0,
-							num = 0;
+							num = <?=$Image->math('count','id',['sh'=>1]);?>;
 
 						function pp(x) {
 							var s, t;
 							if (x == 1 && nowpage - 1 >= 0) {
 								nowpage--;
 							}
-							if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+							if (x == 2 && (nowpage + 1) <= (num-3)) {
 								nowpage++;
 							}
 							$(".im").hide()
