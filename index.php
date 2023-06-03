@@ -1,5 +1,5 @@
-<?php 
-$do = $_GET['do']??'main';
+<?php
+$do = $_GET['do'] ?? 'main';
 include "base.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -22,30 +22,53 @@ include "base.php";
 			<div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
 		</div>
 	</div>
-	
+
 	<div id="main">
-	<?php include "header.php" ?>
+		<?php include "header.php" ?>
 		<div id="ms">
 			<div id="lf" style="float:left;">
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+					<?php
+					$mms = $Menu->all(['parent' => 0, 'sh' => 1]);
+					foreach ($mms as $mm) {
+						echo "<div class='mainmu'>";
+						echo "<a href='{$mm['href']}'>";
+						echo $mm['text'];
+						echo "</a>";
+
+						// 次選單
+						$subs = $Menu->all(['parent' => $mm['id']]);
+						echo "<div class='mw'>";
+						foreach ($subs as $sub) {
+							echo "<div class='mainmu2'>";
+							echo "<a href='{$sub['href']}'>";
+							echo $sub['text'];
+							echo "</a>";
+							echo "</div>";
+						}
+
+						echo "</div>";
+						echo "</div>";
+					}
+					?>
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
-						1 </span>
+						<?= $Total->find(1)['total']; ?> </span>
 				</div>
 			</div>
 			<?php
-				
-				$file = "./front/".$do.".php";
-				if(file_exists($file)){
-					include $file;
-				}else{
-					include "./front/main.php";
-				}
+
+			$file = "./front/" . $do . ".php";
+			if (file_exists($file)) {
+				include $file;
+			} else {
+				include "./front/main.php";
+			}
 			?>
-			
+
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
 				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=admin')">管理登入</button>
@@ -56,14 +79,14 @@ include "base.php";
 					</div>
 
 					<?php
-						$imgs=$Image->all(['sh'=>1]);
-						foreach($imgs as $idx => $img){
-							?>
-							<div class="cent im" id="ssaa<?=$idx;?>">
-								<img width="150px" height="103px" src="./img/<?=$img['img'];?>" alt="">
-							</div>
-							<?php
-						}
+					$imgs = $Image->all(['sh' => 1]);
+					foreach ($imgs as $idx => $img) {
+					?>
+						<div class="cent im" id="ssaa<?= $idx; ?>">
+							<img width="150px" height="103px" src="./img/<?= $img['img']; ?>" alt="">
+						</div>
+					<?php
+					}
 					?>
 					<!-- <div class="cent im" id="ssaa0">A</div>
 					<div class="cent im" id="ssaa1">b</div>
@@ -75,14 +98,14 @@ include "base.php";
 					</div>
 					<script>
 						var nowpage = 0,
-							num = <?=$Image->math('count','id',['sh'=>1]);?>;
+							num = <?= $Image->math('count', 'id', ['sh' => 1]); ?>;
 
 						function pp(x) {
 							var s, t;
 							if (x == 1 && nowpage - 1 >= 0) {
 								nowpage--;
 							}
-							if (x == 2 && (nowpage + 1) <= (num-3)) {
+							if (x == 2 && (nowpage + 1) <= (num - 3)) {
 								nowpage++;
 							}
 							$(".im").hide()
